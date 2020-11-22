@@ -55,13 +55,16 @@ func main() {
 
 func (me *miescritor) Write(b []byte) (n int, err error) {
 
+	n1 := len(me.contenido)
 	me.contenido = append(me.contenido, b...)
 
 	me.tamaño = len(me.contenido)
 
-	n = len(me.contenido)
+	n2 := len(me.contenido)
 
-	if n != me.tamaño {
+	n = n2 - n1
+
+	if n != len(b) {
 		log.Fatal(err)
 	}
 
