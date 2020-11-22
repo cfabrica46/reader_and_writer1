@@ -27,7 +27,29 @@ func nuevomiescritor() *miescritor {
 
 func main() {
 
-	fmt.Println("Hola")
+	contenidolector := []byte("Hola a todos, me llamo César")
+
+	lector := nuevomilector(contenidolector)
+
+	buf := make([]byte, 4)
+
+	escritor := nuevomiescritor()
+
+	for {
+
+		n, err := lector.Read(buf)
+
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+		}
+
+		escritor.Write(buf[:n])
+
+	}
+
+	fmt.Println(string(escritor.contenido))
 
 }
 
